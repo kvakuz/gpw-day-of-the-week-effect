@@ -38,7 +38,7 @@ An empirical econometric investigation of calendar anomalies, return distributio
 ### A. Fat Tails & Non-Normality Across Market Cap Segments
 All return series are stationary (ADF $p = 0.01$) and strongly reject normality (Jarque-Bera $p < 0.001$). Tail thickness and negative skewness increase inversely with company size, peaking in **sWIG80** (kurtosis = `6.347`), whereas broad diversification across 80 constituents lowers its overall daily return standard deviation (`0.007`) relative to **WIG20** (`0.014`).
 
-| Index | Mean Daily Log-Return | Std. Dev. | Skewness | Kurtosis | Jarque-Bera ($p$-val) | Ljung-Box ($p$-val) |
+| Index | Mean Daily Log-Return | Std. Dev. | Skewness | Kurtosis | Jarque-Bera (p-val) | Ljung-Box (p-val) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **WIG20** | 0.00056 | 0.014 | -0.001 | 3.807 | < 0.001 | 0.465 |
 | **mWIG40** | 0.00069 | 0.011 | -0.096 | 4.593 | < 0.001 | 0.447 |
@@ -59,19 +59,21 @@ However, once quarterly derivatives expiration dates are isolated in the econome
 * **mWIG40:** Volume increases by **+78.2%** on Triple Witching Days ($p < 0.0001$), with no significant weekday asymmetry otherwise (Wald $p = 0.2537$).
 * **sWIG80:** Unaffected by Triple Witching Days ($-1.3\%$, $p = 0.9181$) due to the absence of liquid index derivatives.
 
-### D. Conditional Volatility Persistence (`sGARCH(1,1)` with Student's $t$)
+### D. Conditional Volatility Persistence (`sGARCH(1,1)` with Student's *t*)
 Weekday dummy variables in the variance equation are statistically insignificant across all indices ($p \in [0.44, 1.00]$), confirming that conditional risk does not follow a day-of-the-week pattern. However, shock propagation differs substantially across segments:
 
-| Index | ARCH ($\alpha$) | GARCH ($\beta$) | Persistence ($\alpha + \beta$) | Student-$t$ DoF ($\nu$) | Weekday Dummies ($p$-val) |
+| Index | ARCH (α) | GARCH (β) | Persistence (α + β) | Student-t (ν) | Weekday Dummies (p-val) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **WIG20** | 0.0490 ($p < 0.001$) | 0.9197 ($p < 0.001$) | 0.9686 | 18.67 | 0.812 – 1.000 |
-| **mWIG40** | 0.0178 ($p = 0.474$) | 0.9707 ($p < 0.001$) | 0.9885 | 7.41 | 0.983 – 0.995 |
-| **sWIG80** | 0.1897 ($p < 0.001$) | 0.5670 ($p < 0.001$) | 0.7567 | 4.89 | 0.442 – 1.000 |
+| **WIG20** | 0.0490*** | 0.9197*** | 0.9686 | 18.67 | 0.81 – 1.00 |
+| **mWIG40** | 0.0178 | 0.9707*** | 0.9885 | 7.41 | 0.98 – 0.99 |
+| **sWIG80** | 0.1897*** | 0.5670*** | 0.7567 | 4.89 | 0.44 – 1.00 |
+
+*\*Note: `***` denotes statistical significance at the 0.1% level ($p < 0.001$).*
 
 ### E. Intraday Microstructure & FFF Filtering
 AIC minimization selects **$P = 2$** harmonics for **WIG20** and **$P = 3$** for **mWIG40** and **sWIG80**, capturing a pronounced **U-shaped intraday volatility profile** ($\delta_1 < 0, \delta_2 > 0$, $p < 0.001$). After removing overnight returns and filtering intraday seasonality, continuous trading sessions exhibit strong weekday symmetry in WIG20 and mWIG40 ($p > 0.14$), with only a minor Thursday shift in sWIG80 ($\gamma_4 = 0.1515$, $p = 0.034$). This suggests that daily calendar effects originate primarily from overnight information accumulation and opening auction dynamics rather than persistent intraday distortions.
 
-![Intraday Volatility Filtering](figures/02_FFF.png)
+![Intraday Volatility Filtering - sWIG80](figures/02_FFF.png)
 
 ---
 
