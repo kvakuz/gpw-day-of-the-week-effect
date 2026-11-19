@@ -44,13 +44,17 @@ All return series are stationary (ADF $p = 0.01$) and strongly reject normality 
 | **mWIG40** | 0.00069 | 0.011 | -0.096 | 4.593 | < 0.001 | 0.447 |
 | **sWIG80** | 0.00055 | 0.007 | -0.513 | 6.347 | < 0.001 | 0.059 |
 
-![Cumulative Returns by Day of the Week](figures/01_returns.png)
-
 ### B. Point Calendar Effects vs. Joint Market Efficiency
 Individual $t$-tests identify statistically significant positive Monday returns for **WIG20** ($\beta = 0.00212$, $p = 0.0365$) and **mWIG40** ($\beta = 0.00179$, $p = 0.0245$), alongside a positive Friday effect for **sWIG80** ($\beta = 0.00140$, $p = 0.0068$). However, **joint Wald tests fail to reject equality of mean returns across the week** for all three indices ($p = 0.4265$, $0.5691$, and $0.2786$), indicating that point asymmetries are not strong enough to systematically violate weak-form market efficiency.
 
+![Cumulative Returns by Day of the Week](figures/01_returns.png)
+
 ### C. Debunking the "Friday Volume Effect" via Triple Witching Days
-Once quarterly derivatives expiration dates are isolated, regular Fridays show **no statistically significant excess trading volume** across any index ($p > 0.45$). Instead, turnover surges are driven mechanically by derivatives rollovers and arbitrage:
+Exploratory averages of percentage volume deviations initially suggest an apparent surge in Friday trading activity across large- and mid-cap stocks (**+8.7%** for WIG20 and **+4.5%** for mWIG40), contrasted with subdued Monday turnover (**-13.0%** for WIG20):
+
+![Exploratory Volume Deviation by Day of the Week](figures/03_vol.png)
+
+However, once quarterly derivatives expiration dates are isolated in the econometric model, regular Fridays show **no statistically significant excess trading volume** across any index ($p > 0.45$). Turnover surges are driven mechanically by derivatives rollovers and arbitrage rather than calendar preferences:
 * **WIG20:** Volume jumps by **+148.9%** on Triple Witching Days ($p < 0.0001$), while regular Mondays exhibit a genuine liquidity drop of **-13.0%** ($p = 0.0003$; joint Wald $p < 0.0001$).
 * **mWIG40:** Volume increases by **+78.2%** on Triple Witching Days ($p < 0.0001$), with no significant weekday asymmetry otherwise (Wald $p = 0.2537$).
 * **sWIG80:** Unaffected by Triple Witching Days ($-1.3\%$, $p = 0.9181$) due to the absence of liquid index derivatives.
@@ -85,7 +89,8 @@ AIC minimization selects **$P = 2$** harmonics for **WIG20** and **$P = 3$** for
     │   └── 07_volatility_visualization.R  # ggplot2 intraday U-shape & filtered return profiles
     ├── figures/
     │   ├── 01_returns.png
-    │   └── 02_FFF.png
+    │   ├── 02_FFF.png
+    │   └── 03_vol.png
     └── thesis/
         └── Badanie_Efektu_Dnia_Tygodnia_GPW_PL.pdf
 
